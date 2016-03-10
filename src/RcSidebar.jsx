@@ -1,48 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 const CANCEL_DISTANCE_ON_SCROLL = 20;
 
 const defaultStyles = {
-  root: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    overflow: 'hidden',
-  },
-  sidebar: {
-    zIndex: 2,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    transition: 'transform .3s ease-out',
-    WebkitTransition: '-webkit-transform .3s ease-out',
-    willChange: 'transform',
-    overflowY: 'auto',
-  },
-  content: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    overflow: 'auto',
-    transition: 'left .3s ease-out, right .3s ease-out',
-  },
-  overlay: {
-    zIndex: 1,
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    opacity: 0,
-    visibility: 'hidden',
-    transition: 'opacity .3s ease-out',
-    backgroundColor: 'rgba(0,0,0,.3)',
-  },
   dragHandle: {
     zIndex: 1,
     position: 'fixed',
@@ -209,31 +171,20 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const sidebarStyle = {...defaultStyles.sidebar, ...this.props.styles.sidebar};
-    const contentStyle = {...defaultStyles.content, ...this.props.styles.content};
-    const overlayStyle = {...defaultStyles.overlay, ...this.props.styles.overlay};
+    const props = this.props;
+    const prefixCls = props.prefixCls;
+    const rootProps = {};
+    const sidebarStyle = {...props.sidebarStyle};
+    const contentStyle = {...props.contentStyle};
+    const overlayStyle = {...props.overlayStyle};
     const useTouch = this.state.dragSupported && this.props.touch;
     const isTouching = this.isTouching();
-    const rootProps = {
-      style: {...defaultStyles.root, ...this.props.styles.root},
-    };
     let dragHandle;
 
-    // sidebarStyle right/left
     if (this.props.pullRight) {
-      sidebarStyle.right = 0;
-      sidebarStyle.transform = 'translateX(100%)';
-      sidebarStyle.WebkitTransform = 'translateX(100%)';
-      if (this.props.shadow) {
-        sidebarStyle.boxShadow = '-2px 2px 4px rgba(0, 0, 0, 0.15)';
-      }
+      rootProps.className = classNames(props.className, props.prefixCls, `${props.prefixCls}-right`);
     } else {
-      sidebarStyle.left = 0;
-      sidebarStyle.transform = 'translateX(-100%)';
-      sidebarStyle.WebkitTransform = 'translateX(-100%)';
-      if (this.props.shadow) {
-        sidebarStyle.boxShadow = '2px 2px 4px rgba(0, 0, 0, 0.15)';
-      }
+      rootProps.className = classNames(props.className, props.prefixCls, `${props.prefixCls}-left`);
     }
 
     if (isTouching) {
@@ -292,7 +243,6 @@ class Sidebar extends React.Component {
         const dragHandleStyle = {...defaultStyles.dragHandle, ...this.props.styles.dragHandle};
         dragHandleStyle.width = this.props.touchHandleWidth;
 
-        // dragHandleStyle right/left
         if (this.props.pullRight) {
           dragHandleStyle.right = 0;
         } else {
@@ -308,12 +258,13 @@ class Sidebar extends React.Component {
 
     return (
       <div {...rootProps}>
-        <div className={this.props.sidebarClassName} style={sidebarStyle} ref="sidebar">
+        <div className={`${prefixCls}-sidebar`} style={sidebarStyle} ref="sidebar">
           {this.props.sidebar}
         </div>
-        <div style={overlayStyle}
-             onClick={this.overlayClicked} onTouchTap={this.overlayClicked} />
-        <div style={contentStyle}>
+        <div className={`${prefixCls}-overlay`} style={overlayStyle}
+             onClick={this.overlayClicked}
+             onTouchTap={this.overlayClicked} />
+        <div className={`${prefixCls}-content`} style={contentStyle}>
           {dragHandle}
           {this.props.children}
         </div>
@@ -323,20 +274,17 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.propTypes = {
+  prefixCls: React.PropTypes.string,
   // main content to render
   children: React.PropTypes.node.isRequired,
 
   // styles
   styles: React.PropTypes.shape({
-    root: React.PropTypes.object,
-    sidebar: React.PropTypes.object,
-    content: React.PropTypes.object,
-    overlay: React.PropTypes.object,
     dragHandle: React.PropTypes.object,
   }),
-
-  // sidebar optional class
-  sidebarClassName: React.PropTypes.string,
+  sidebarStyle: React.PropTypes.object,
+  contentStyle: React.PropTypes.object,
+  overlayStyle: React.PropTypes.object,
 
   // sidebar content to render
   sidebar: React.PropTypes.node.isRequired,
@@ -370,6 +318,10 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
+  prefixCls: 'rci-sidebar',
+  sidebarStyle: {},
+  contentStyle: {},
+  overlayStyle: {},
   docked: false,
   open: false,
   transitions: true,
@@ -379,7 +331,6 @@ Sidebar.defaultProps = {
   shadow: true,
   dragToggleDistance: 30,
   onSetOpen: () => {},
-  styles: {},
 };
 
 export default Sidebar;

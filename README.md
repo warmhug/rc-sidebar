@@ -71,7 +71,7 @@ React.render(<RcSidebar />, container);
 | name     | description    | type     | default      |
 |----------|----------------|----------|--------------|
 |className | additional css class of root dom node | String | '' |
-|prefixCls | prefix class | String | '' |
+|prefixCls | prefix class | String | 'rci-sidebar' |
 
 ## Test Case
 

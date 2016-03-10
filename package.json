@@ -17,10 +17,13 @@
   "bugs": {
     "url": "https://github.com/react-component/rc-sidebar/issues"
   },
-  "files":["lib", "assets/*.css"],
+  "files": [
+    "lib",
+    "assets/*.css"
+  ],
   "licenses": "MIT",
-  "main":"./lib/index",
-  "config":{
+  "main": "./lib/index",
+  "config": {
     "port": 8009
   },
   "scripts": {
@@ -45,5 +48,8 @@
   },
   "pre-commit": [
     "lint"
-  ]
+  ],
+  "dependencies": {
+    "classnames": "^2.2.3"
+  }
 }

@@ -1,6 +1,7 @@
 // use jsx to render html, do not modify simple.html
 
 import 'rci-sidebar/assets/index.less';
+import './simple.less';
 import RcSidebar from 'rci-sidebar';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -31,6 +32,9 @@ const App = React.createClass({
         <label htmlFor={prop}> {prop}</label>
       </p>);
   },
+  onSetOpen(open) {
+    this.setState({open: open});
+  },
   render() {
 
     const sidebar = (<div>
@@ -41,7 +45,6 @@ const App = React.createClass({
 
     const sidebarProps = {
       docked: this.state.docked,
-      sidebarClassName: 'custom-sidebar-class',
       open: this.state.open,
       touch: this.state.touch,
       shadow: this.state.shadow,
