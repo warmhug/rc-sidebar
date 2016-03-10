@@ -37,6 +37,20 @@
     transition: opacity 0.3s ease-out;
     background-color: rgba(0, 0, 0, 0.3);
   }
+  &-draghandle {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background-color: rgba(50, 50, 50, 0.2);
+    &::after {
+      content: '||';
+      position: absolute;
+      top: 48%;
+      left: 1px;
+    }
+  }
 
   &.@{sidebarPrefixCls}-left {
     .@{sidebarPrefixCls}-sidebar {

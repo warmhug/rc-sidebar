@@ -4,15 +4,6 @@ import classNames from 'classnames';
 
 const CANCEL_DISTANCE_ON_SCROLL = 20;
 
-const defaultStyles = {
-  dragHandle: {
-    zIndex: 1,
-    position: 'fixed',
-    top: 0,
-    bottom: 0,
-  },
-};
-
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
@@ -240,7 +231,7 @@ class Sidebar extends React.Component {
         rootProps.onTouchCancel = this.onTouchEnd;
         rootProps.onScroll = this.onScroll;
       } else {
-        const dragHandleStyle = {...defaultStyles.dragHandle, ...this.props.styles.dragHandle};
+        const dragHandleStyle = {...props.dragHandleStyle};
         dragHandleStyle.width = this.props.touchHandleWidth;
 
         if (this.props.pullRight) {
@@ -250,7 +241,7 @@ class Sidebar extends React.Component {
         }
 
         dragHandle = (
-          <div style={dragHandleStyle}
+          <div className={`${prefixCls}-draghandle`} style={dragHandleStyle}
                onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove}
                onTouchEnd={this.onTouchEnd} onTouchCancel={this.onTouchEnd} />);
       }
@@ -279,12 +270,13 @@ Sidebar.propTypes = {
   children: React.PropTypes.node.isRequired,
 
   // styles
-  styles: React.PropTypes.shape({
-    dragHandle: React.PropTypes.object,
-  }),
+  // styles: React.PropTypes.shape({
+  //   dragHandle: React.PropTypes.object,
+  // }),
   sidebarStyle: React.PropTypes.object,
   contentStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
+  dragHandleStyle: React.PropTypes.object,
 
   // sidebar content to render
   sidebar: React.PropTypes.node.isRequired,
@@ -307,9 +299,6 @@ Sidebar.propTypes = {
   // Place the sidebar on the right
   pullRight: React.PropTypes.bool,
 
-  // Enable/Disable sidebar shadow
-  shadow: React.PropTypes.bool,
-
   // distance we have to drag the sidebar to toggle open state
   dragToggleDistance: React.PropTypes.number,
 
@@ -322,13 +311,13 @@ Sidebar.defaultProps = {
   sidebarStyle: {},
   contentStyle: {},
   overlayStyle: {},
+  dragHandleStyle: {},
   docked: false,
   open: false,
   transitions: true,
   touch: true,
   touchHandleWidth: 20,
   pullRight: false,
-  shadow: true,
   dragToggleDistance: 30,
   onSetOpen: () => {},
 };
