@@ -249,7 +249,8 @@ class Sidebar extends React.Component {
 
     return (
       <div {...rootProps}>
-        <div className={`${prefixCls}-sidebar`} style={sidebarStyle} ref="sidebar">
+        <div className={`${prefixCls}-sidebar`} style={sidebarStyle}
+              ref="sidebar">
           {this.props.sidebar}
         </div>
         <div className={`${prefixCls}-overlay`} style={overlayStyle}

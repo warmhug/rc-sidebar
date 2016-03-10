@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "expect.js": "0.3.x",
+    "font-awesome": "^4.5.0",
     "pre-commit": "1.x",
     "rc-tools": "5.x",
     "react": "0.14.x",

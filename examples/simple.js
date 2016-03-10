@@ -19,27 +19,27 @@ const App = React.createClass({
       dragToggleDistance: 30,
     };
   },
-  renderPropCheckbox(prop) {
-    const toggleMethod = (ev) => {
-      const newState = {};
-      newState[prop] = ev.target.checked;
-      this.setState(newState);
-    };
-
-    return (
-      <p key={prop}>
-        <input type="checkbox" onChange={toggleMethod} checked={this.state[prop]} id={prop} />
-        <label htmlFor={prop}> {prop}</label>
-      </p>);
-  },
   onSetOpen(open) {
     this.setState({open: open});
+  },
+  onDock() {
+    const docked = !this.state.docked;
+    this.setState({
+      docked,
+    });
+    if (!docked) {
+      this.onSetOpen(false);
+    }
   },
   render() {
 
     const sidebar = (<div>
-      <h3>sidebar</h3>
-      <p>this is content!</p>
+      <h3>
+        sidebar
+        <button onClick={this.onDock}>
+          {this.state.docked ? 'unpin' : 'pin'}
+        </button>
+      </h3>
       <p>this is content!</p>
     </div>);
 
@@ -54,13 +54,11 @@ const App = React.createClass({
       transitions: this.state.transitions,
       onSetOpen: this.onSetOpen,
     };
-    return (<div style={{height: '600px'}}>
+    return (<div className="container">
       <RcSidebar sidebar={sidebar} {...sidebarProps}>
         <div>
           <p>React Sidebar is a sidebar component for React.</p>
-          <p>this is content!</p>
-          <button onClick={() => {this.setState({open: !this.state.open});}}>展开/收起</button>
-          {['open', 'docked', 'transitions', 'touch', 'shadow', 'pullRight'].map(this.renderPropCheckbox)}
+          <button onClick={() => {this.setState({open: !this.state.open});}}>switch-open</button>
         </div>
       </RcSidebar>
     </div>);
