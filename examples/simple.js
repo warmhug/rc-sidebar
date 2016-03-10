@@ -45,32 +45,20 @@ webpackJsonp([0,1],[
 	      dragToggleDistance: 30
 	    };
 	  },
-	  renderPropCheckbox: function renderPropCheckbox(prop) {
-	    var _this = this;
-	
-	    var toggleMethod = function toggleMethod(ev) {
-	      var newState = {};
-	      newState[prop] = ev.target.checked;
-	      _this.setState(newState);
-	    };
-	
-	    return _react2.default.createElement(
-	      'p',
-	      { key: prop },
-	      _react2.default.createElement('input', { type: 'checkbox', onChange: toggleMethod, checked: this.state[prop], id: prop }),
-	      _react2.default.createElement(
-	        'label',
-	        { htmlFor: prop },
-	        ' ',
-	        prop
-	      )
-	    );
-	  },
 	  onSetOpen: function onSetOpen(open) {
 	    this.setState({ open: open });
 	  },
+	  onDock: function onDock() {
+	    var docked = !this.state.docked;
+	    this.setState({
+	      docked: docked
+	    });
+	    if (!docked) {
+	      this.onSetOpen(false);
+	    }
+	  },
 	  render: function render() {
-	    var _this2 = this;
+	    var _this = this;
 	
 	    var sidebar = _react2.default.createElement(
 	      'div',
@@ -78,12 +66,12 @@ webpackJsonp([0,1],[
 	      _react2.default.createElement(
 	        'h3',
 	        null,
-	        'sidebar'
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'this is content!'
+	        'sidebar',
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.onDock },
+	          this.state.docked ? 'unpin' : 'pin'
+	        )
 	      ),
 	      _react2.default.createElement(
 	        'p',
@@ -105,7 +93,7 @@ webpackJsonp([0,1],[
 	    };
 	    return _react2.default.createElement(
 	      'div',
-	      { style: { height: '600px' } },
+	      { className: 'container' },
 	      _react2.default.createElement(
 	        _rciSidebar2.default,
 	        _extends({ sidebar: sidebar }, sidebarProps),
@@ -118,18 +106,12 @@ webpackJsonp([0,1],[
 	            'React Sidebar is a sidebar component for React.'
 	          ),
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'this is content!'
-	          ),
-	          _react2.default.createElement(
 	            'button',
 	            { onClick: function onClick() {
-	                _this2.setState({ open: !_this2.state.open });
+	                _this.setState({ open: !_this.state.open });
 	              } },
-	            '展开/收起'
-	          ),
-	          ['open', 'docked', 'transitions', 'touch', 'shadow', 'pullRight'].map(this.renderPropCheckbox)
+	            'switch-open'
+	          )
 	        )
 	      )
 	    );
@@ -496,7 +478,8 @@ webpackJsonp([0,1],[
 	        rootProps,
 	        _react2.default.createElement(
 	          'div',
-	          { className: prefixCls + '-sidebar', style: sidebarStyle, ref: 'sidebar' },
+	          { className: prefixCls + '-sidebar', style: sidebarStyle,
+	            ref: 'sidebar' },
 	          this.props.sidebar
 	        ),
 	        _react2.default.createElement('div', { className: prefixCls + '-overlay', style: overlayStyle,

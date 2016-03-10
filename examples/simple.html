@@ -285,27 +285,27 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       dragToggleDistance: <span class="hljs-number">30</span>,
     };
   },
-  renderPropCheckbox(prop) {
-    <span class="hljs-keyword">const</span> toggleMethod = (ev) =&gt; {
-      <span class="hljs-keyword">const</span> newState = {};
-      newState[prop] = ev.target.checked;
-      <span class="hljs-keyword">this</span>.setState(newState);
-    };
-
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{prop}</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{toggleMethod}</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">{this.state[prop]}</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">{prop}</span> /&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">htmlFor</span>=<span class="hljs-value">{prop}</span>&gt;</span> {prop}<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>)</span>;
-  },
   onSetOpen(open) {
     <span class="hljs-keyword">this</span>.setState({open: open});
+  },
+  onDock() {
+    <span class="hljs-keyword">const</span> docked = !<span class="hljs-keyword">this</span>.state.docked;
+    <span class="hljs-keyword">this</span>.setState({
+      docked,
+    });
+    <span class="hljs-keyword">if</span> (!docked) {
+      <span class="hljs-keyword">this</span>.onSetOpen(<span class="hljs-literal">false</span>);
+    }
   },
   render() {
 
     <span class="hljs-keyword">const</span> sidebar = (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>sidebar<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>this is content!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>
+        sidebar
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.onDock}</span>&gt;</span>
+          {this.state.docked ? 'unpin' : 'pin'}
+        <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>this is content!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>)</span>;
 
@@ -320,13 +320,11 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       transitions: <span class="hljs-keyword">this</span>.state.transitions,
       onSetOpen: <span class="hljs-keyword">this</span>.onSetOpen,
     };
-    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{height:</span> '<span class="hljs-attribute">600px</span>'}}&gt;</span>
+    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"container"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">RcSidebar</span> <span class="hljs-attribute">sidebar</span>=<span class="hljs-value">{sidebar}</span> {<span class="hljs-attribute">...sidebarProps</span>}&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>React Sidebar is a sidebar component for React.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>this is content!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {this.setState({open: !this.state.open});}}&gt;展开/收起<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-          {['open', 'docked', 'transitions', 'touch', 'shadow', 'pullRight'].map(this.renderPropCheckbox)}
+          <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {this.setState({open: !this.state.open});}}&gt;switch-open<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">RcSidebar</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>)</span>;
