@@ -787,33 +787,117 @@ npm start</code></pre></div><h2>Example<a id="user-content-example" name="exampl
 <h2>install<a id="user-content-install" name="install" class="anchor" aria-hidden="true" href="#install"><span class="octicon octicon-link"></span></a></h2><p><a href="https://npmjs.org/package/rci-sidebar" title="null"><img src="https://nodei.co/npm/rci-sidebar.png" alt="rci-sidebar"></a></p>
 <h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="js"><span class="hljs-keyword">var</span> RcSidebar = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rci-sidebar'</span>);
 <span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-React.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">RcSidebar</span> /&gt;</span>, container);</span></code></pre></div><h2>API<a id="user-content-api" name="api" class="anchor" aria-hidden="true" href="#api"><span class="octicon octicon-link"></span></a></h2><blockquote>
-<p>from <a href="https://github.com/balloob/react-sidebar" title="null">https://github.com/balloob/react-sidebar</a></p>
-</blockquote>
-<h3>props<a id="user-content-props" name="props" class="anchor" aria-hidden="true" href="#props"><span class="octicon octicon-link"></span></a></h3><table>
+React.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">RcSidebar</span> /&gt;</span>, container);</span></code></pre></div><h2>API<a id="user-content-api" name="api" class="anchor" aria-hidden="true" href="#api"><span class="octicon octicon-link"></span></a></h2><h3>props<a id="user-content-props" name="props" class="anchor" aria-hidden="true" href="#props"><span class="octicon octicon-link"></span></a></h3><table>
 <thead>
 <tr>
-<th>name</th>
-<th>description</th>
-<th>type</th>
-<th>default</th>
+<th>Property name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>className</td>
-<td>additional css class of root dom node</td>
 <td>String</td>
 <td>&#39;&#39;</td>
+<td>additional css class of root dom node</td>
 </tr>
 <tr>
 <td>prefixCls</td>
-<td>prefix class</td>
 <td>String</td>
 <td>&#39;rci-sidebar&#39;</td>
+<td>prefix class</td>
+</tr>
+<tr>
+<td>children</td>
+<td>Anything React can render</td>
+<td>n/a</td>
+<td>The main content</td>
+</tr>
+<tr>
+<td>sidebarStyle</td>
+<td>object</td>
+<td>{}</td>
+<td>Inline styles.</td>
+</tr>
+<tr>
+<td>contentStyle</td>
+<td>object</td>
+<td>{}</td>
+<td>Inline styles.</td>
+</tr>
+<tr>
+<td>overlayStyle</td>
+<td>object</td>
+<td>{}</td>
+<td>Inline styles.</td>
+</tr>
+<tr>
+<td>dragHandleStyle</td>
+<td>object</td>
+<td>{}</td>
+<td>Inline styles.</td>
+</tr>
+<tr>
+<td>sidebar</td>
+<td>Anything React can render</td>
+<td>n/a</td>
+<td>The sidebar content</td>
+</tr>
+<tr>
+<td>onSetOpen</td>
+<td>function</td>
+<td>n/a</td>
+<td>Callback called when the sidebar wants to change the open prop. Happens after sliding the sidebar and when the overlay is clicked when the sidebar is open.</td>
+</tr>
+<tr>
+<td>docked</td>
+<td>boolean</td>
+<td>false</td>
+<td>If the sidebar should be always visible</td>
+</tr>
+<tr>
+<td>open</td>
+<td>boolean</td>
+<td>false</td>
+<td>If the sidebar should be open</td>
+</tr>
+<tr>
+<td>transitions</td>
+<td>boolean</td>
+<td>true</td>
+<td>If transitions should be enabled</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>boolean</td>
+<td>true</td>
+<td>If touch gestures should be enabled</td>
+</tr>
+<tr>
+<td>touchHandleWidth</td>
+<td>number</td>
+<td>20</td>
+<td>Width in pixels you can start dragging from the edge when the sidebar is closed.</td>
+</tr>
+<tr>
+<td>dragToggleDistance</td>
+<td>number</td>
+<td>30</td>
+<td>Distance the sidebar has to be dragged before it will open/close after it is released.</td>
+</tr>
+<tr>
+<td>pullRight</td>
+<td>boolean</td>
+<td>false</td>
+<td>Place the sidebar on the right</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>change from <a href="https://github.com/balloob/react-sidebar" title="null">https://github.com/balloob/react-sidebar</a></p>
+</blockquote>
 <h2>Test Case<a id="user-content-test-case" name="test-case" class="anchor" aria-hidden="true" href="#test-case"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm test
 npm run chrome-test</code></pre></div><h2>Coverage<a id="user-content-coverage" name="coverage" class="anchor" aria-hidden="true" href="#coverage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm run coverage</code></pre></div><p>open coverage/ dir</p>
 <h2>License<a id="user-content-license" name="license" class="anchor" aria-hidden="true" href="#license"><span class="octicon octicon-link"></span></a></h2><p>rci-sidebar is released under the MIT license.</p>

@@ -39,13 +39,13 @@ webpackJsonp([0,1],[
 	      open: false,
 	      transitions: true,
 	      touch: true,
-	      shadow: true,
 	      pullRight: false,
 	      touchHandleWidth: 20,
 	      dragToggleDistance: 30
 	    };
 	  },
 	  onSetOpen: function onSetOpen(open) {
+	    console.log('onSetOpen', open);
 	    this.setState({ open: open });
 	  },
 	  onDock: function onDock() {
@@ -84,7 +84,6 @@ webpackJsonp([0,1],[
 	      docked: this.state.docked,
 	      open: this.state.open,
 	      touch: this.state.touch,
-	      shadow: this.state.shadow,
 	      pullRight: this.state.pullRight,
 	      touchHandleWidth: this.state.touchHandleWidth,
 	      dragToggleDistance: this.state.dragToggleDistance,
@@ -399,11 +398,7 @@ webpackJsonp([0,1],[
 	      var isTouching = this.isTouching();
 	      var dragHandle = void 0;
 	
-	      if (this.props.pullRight) {
-	        rootProps.className = (0, _classnames2.default)(props.className, props.prefixCls, props.prefixCls + '-right');
-	      } else {
-	        rootProps.className = (0, _classnames2.default)(props.className, props.prefixCls, props.prefixCls + '-left');
-	      }
+	      rootProps.className = props.pullRight ? (0, _classnames2.default)(props.className, props.prefixCls, props.prefixCls + '-right') : (0, _classnames2.default)(props.className, props.prefixCls, props.prefixCls + '-left');
 	
 	      if (isTouching) {
 	        var percentage = this.touchSidebarWidth() / this.state.sidebarWidth;
@@ -469,7 +464,9 @@ webpackJsonp([0,1],[
 	
 	          dragHandle = _react2.default.createElement('div', { className: prefixCls + '-draghandle', style: dragHandleStyle,
 	            onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove,
-	            onTouchEnd: this.onTouchEnd, onTouchCancel: this.onTouchEnd });
+	            onTouchEnd: this.onTouchEnd, onTouchCancel: this.onTouchEnd,
+	            ref: 'dragHandle'
+	          });
 	        }
 	      }
 	
@@ -479,15 +476,20 @@ webpackJsonp([0,1],[
 	        _react2.default.createElement(
 	          'div',
 	          { className: prefixCls + '-sidebar', style: sidebarStyle,
-	            ref: 'sidebar' },
+	            ref: 'sidebar'
+	          },
 	          this.props.sidebar
 	        ),
 	        _react2.default.createElement('div', { className: prefixCls + '-overlay', style: overlayStyle,
 	          onClick: this.overlayClicked,
-	          onTouchTap: this.overlayClicked }),
+	          onTouchTap: this.overlayClicked,
+	          ref: 'overlay'
+	        }),
 	        _react2.default.createElement(
 	          'div',
-	          { className: prefixCls + '-content', style: contentStyle },
+	          { className: prefixCls + '-content', style: contentStyle,
+	            ref: 'content'
+	          },
 	          dragHandle,
 	          this.props.children
 	        )

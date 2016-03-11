@@ -279,14 +279,14 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       open: <span class="hljs-literal">false</span>,
       transitions: <span class="hljs-literal">true</span>,
       touch: <span class="hljs-literal">true</span>,
-      shadow: <span class="hljs-literal">true</span>,
       pullRight: <span class="hljs-literal">false</span>,
       touchHandleWidth: <span class="hljs-number">20</span>,
       dragToggleDistance: <span class="hljs-number">30</span>,
     };
   },
   onSetOpen(open) {
-    <span class="hljs-keyword">this</span>.setState({open: open});
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onSetOpen'</span>, open);
+    <span class="hljs-keyword">this</span>.setState({ open });
   },
   onDock() {
     <span class="hljs-keyword">const</span> docked = !<span class="hljs-keyword">this</span>.state.docked;
@@ -298,7 +298,6 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     }
   },
   render() {
-
     <span class="hljs-keyword">const</span> sidebar = (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>
         sidebar
@@ -313,7 +312,6 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       docked: <span class="hljs-keyword">this</span>.state.docked,
       open: <span class="hljs-keyword">this</span>.state.open,
       touch: <span class="hljs-keyword">this</span>.state.touch,
-      shadow: <span class="hljs-keyword">this</span>.state.shadow,
       pullRight: <span class="hljs-keyword">this</span>.state.pullRight,
       touchHandleWidth: <span class="hljs-keyword">this</span>.state.touchHandleWidth,
       dragToggleDistance: <span class="hljs-keyword">this</span>.state.dragToggleDistance,
@@ -324,11 +322,11 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       <span class="hljs-tag">&lt;<span class="hljs-title">RcSidebar</span> <span class="hljs-attribute">sidebar</span>=<span class="hljs-value">{sidebar}</span> {<span class="hljs-attribute">...sidebarProps</span>}&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>React Sidebar is a sidebar component for React.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {this.setState({open: !this.state.open});}}&gt;switch-open<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {this.setState({ open: !this.state.open });}}&gt;switch-open<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">RcSidebar</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>)</span>;
-  }
+  },
 });
 
 ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">App</span> /&gt;</span>, document.getElementById('__react-content'));
