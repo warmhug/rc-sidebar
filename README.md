@@ -64,14 +64,28 @@ React.render(<RcSidebar />, container);
 
 ## API
 
-> from [https://github.com/balloob/react-sidebar](https://github.com/balloob/react-sidebar)
-
 ### props
 
-| name     | description    | type     | default      |
-|----------|----------------|----------|--------------|
-|className | additional css class of root dom node | String | '' |
-|prefixCls | prefix class | String | 'rci-sidebar' |
+| Property name | Type | Default | Description |
+|---------------|------|---------|-------------|
+| className | String | '' | additional css class of root dom node |
+| prefixCls | String | 'rci-sidebar' | prefix class |
+| children | Anything React can render | n/a | The main content |
+| sidebarStyle | object | {} | Inline styles. |
+| contentStyle | object | {} | Inline styles. |
+| overlayStyle | object | {} | Inline styles. |
+| dragHandleStyle | object | {} | Inline styles. |
+| sidebar | Anything React can render | n/a | The sidebar content |
+| onSetOpen | function | n/a | Callback called when the sidebar wants to change the open prop. Happens after sliding the sidebar and when the overlay is clicked when the sidebar is open. |
+| docked | boolean | false | If the sidebar should be always visible |
+| open | boolean | false | If the sidebar should be open |
+| transitions | boolean | true | If transitions should be enabled |
+| touch | boolean | true | If touch gestures should be enabled |
+| touchHandleWidth | number | 20 | Width in pixels you can start dragging from the edge when the sidebar is closed. |
+| dragToggleDistance | number | 30 | Distance the sidebar has to be dragged before it will open/close after it is released. |
+| pullRight | boolean | false | Place the sidebar on the right |
+
+> change from [https://github.com/balloob/react-sidebar](https://github.com/balloob/react-sidebar)
 
 ## Test Case
 
