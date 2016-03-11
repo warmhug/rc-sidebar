@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 const Simulate = TestUtils.Simulate;
 const RcSidebar = require('../');
-const $ = require('jquery');
+// const $ = require('jquery');
 
 describe('simple tree', () => {
   let instance;
@@ -41,5 +41,4 @@ describe('simple tree', () => {
     );
     Simulate.click(instance.refs.overlay);
   });
-
 });

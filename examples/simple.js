@@ -20,7 +20,7 @@ const App = React.createClass({
   },
   onSetOpen(open) {
     console.log('onSetOpen', open);
-    this.setState({open: open});
+    this.setState({ open });
   },
   onDock() {
     const docked = !this.state.docked;
@@ -32,7 +32,6 @@ const App = React.createClass({
     }
   },
   render() {
-
     const sidebar = (<div>
       <h3>
         sidebar
@@ -57,11 +56,11 @@ const App = React.createClass({
       <RcSidebar sidebar={sidebar} {...sidebarProps}>
         <div>
           <p>React Sidebar is a sidebar component for React.</p>
-          <button onClick={() => {this.setState({open: !this.state.open});}}>switch-open</button>
+          <button onClick={() => {this.setState({ open: !this.state.open });}}>switch-open</button>
         </div>
       </RcSidebar>
     </div>);
-  }
+  },
 });
 
 ReactDOM.render(<App />, document.getElementById('__react-content'));

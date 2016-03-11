@@ -133,7 +133,7 @@ class Sidebar extends React.Component {
     const width = ReactDOM.findDOMNode(this.refs.sidebar).offsetWidth;
 
     if (width !== this.state.sidebarWidth) {
-      this.setState({sidebarWidth: width});
+      this.setState({ sidebarWidth: width });
     }
   }
 
@@ -165,18 +165,16 @@ class Sidebar extends React.Component {
     const props = this.props;
     const prefixCls = props.prefixCls;
     const rootProps = {};
-    const sidebarStyle = {...props.sidebarStyle};
-    const contentStyle = {...props.contentStyle};
-    const overlayStyle = {...props.overlayStyle};
+    const sidebarStyle = { ...props.sidebarStyle };
+    const contentStyle = { ...props.contentStyle };
+    const overlayStyle = { ...props.overlayStyle };
     const useTouch = this.state.dragSupported && this.props.touch;
     const isTouching = this.isTouching();
     let dragHandle;
 
-    if (this.props.pullRight) {
-      rootProps.className = classNames(props.className, props.prefixCls, `${props.prefixCls}-right`);
-    } else {
-      rootProps.className = classNames(props.className, props.prefixCls, `${props.prefixCls}-left`);
-    }
+    rootProps.className = props.pullRight ?
+      classNames(props.className, props.prefixCls, `${props.prefixCls}-right`) :
+      classNames(props.className, props.prefixCls, `${props.prefixCls}-left`);
 
     if (isTouching) {
       const percentage = this.touchSidebarWidth() / this.state.sidebarWidth;
@@ -231,7 +229,7 @@ class Sidebar extends React.Component {
         rootProps.onTouchCancel = this.onTouchEnd;
         rootProps.onScroll = this.onScroll;
       } else {
-        const dragHandleStyle = {...props.dragHandleStyle};
+        const dragHandleStyle = { ...props.dragHandleStyle };
         dragHandleStyle.width = this.props.touchHandleWidth;
 
         if (this.props.pullRight) {
@@ -242,24 +240,28 @@ class Sidebar extends React.Component {
 
         dragHandle = (
           <div className={`${prefixCls}-draghandle`} style={dragHandleStyle}
-               onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove}
-               onTouchEnd={this.onTouchEnd} onTouchCancel={this.onTouchEnd}
-               ref="dragHandle" />);
+            onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove}
+            onTouchEnd={this.onTouchEnd} onTouchCancel={this.onTouchEnd}
+            ref="dragHandle"
+          />);
       }
     }
 
     return (
       <div {...rootProps}>
         <div className={`${prefixCls}-sidebar`} style={sidebarStyle}
-          ref="sidebar">
+          ref="sidebar"
+        >
           {this.props.sidebar}
         </div>
         <div className={`${prefixCls}-overlay`} style={overlayStyle}
           onClick={this.overlayClicked}
           onTouchTap={this.overlayClicked}
-          ref="overlay" />
+          ref="overlay"
+        />
         <div className={`${prefixCls}-content`} style={contentStyle}
-          ref="content">
+          ref="content"
+        >
           {dragHandle}
           {this.props.children}
         </div>
