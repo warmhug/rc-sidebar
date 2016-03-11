@@ -13,13 +13,13 @@ const App = React.createClass({
       open: false,
       transitions: true,
       touch: true,
-      shadow: true,
       pullRight: false,
       touchHandleWidth: 20,
       dragToggleDistance: 30,
     };
   },
   onSetOpen(open) {
+    console.log('onSetOpen', open);
     this.setState({open: open});
   },
   onDock() {
@@ -47,7 +47,6 @@ const App = React.createClass({
       docked: this.state.docked,
       open: this.state.open,
       touch: this.state.touch,
-      shadow: this.state.shadow,
       pullRight: this.state.pullRight,
       touchHandleWidth: this.state.touchHandleWidth,
       dragToggleDistance: this.state.dragToggleDistance,

@@ -243,20 +243,23 @@ class Sidebar extends React.Component {
         dragHandle = (
           <div className={`${prefixCls}-draghandle`} style={dragHandleStyle}
                onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove}
-               onTouchEnd={this.onTouchEnd} onTouchCancel={this.onTouchEnd} />);
+               onTouchEnd={this.onTouchEnd} onTouchCancel={this.onTouchEnd}
+               ref="dragHandle" />);
       }
     }
 
     return (
       <div {...rootProps}>
         <div className={`${prefixCls}-sidebar`} style={sidebarStyle}
-              ref="sidebar">
+          ref="sidebar">
           {this.props.sidebar}
         </div>
         <div className={`${prefixCls}-overlay`} style={overlayStyle}
-             onClick={this.overlayClicked}
-             onTouchTap={this.overlayClicked} />
-        <div className={`${prefixCls}-content`} style={contentStyle}>
+          onClick={this.overlayClicked}
+          onTouchTap={this.overlayClicked}
+          ref="overlay" />
+        <div className={`${prefixCls}-content`} style={contentStyle}
+          ref="content">
           {dragHandle}
           {this.props.children}
         </div>
