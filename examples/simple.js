@@ -117,7 +117,21 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('__react-content'));
+	_reactDom2.default.render(_react2.default.createElement(
+	  'div',
+	  null,
+	  _react2.default.createElement(
+	    'p',
+	    null,
+	    'Github：',
+	    _react2.default.createElement(
+	      'a',
+	      { href: 'https://github.com/warmhug/rc-sidebar' },
+	      'https://github.com/warmhug/rc-sidebar'
+	    )
+	  ),
+	  _react2.default.createElement(App, null)
+	), document.getElementById('__react-content'));
 
 /***/ },
 /* 2 */
