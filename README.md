@@ -32,7 +32,7 @@ React RcSidebar Component
 
 ## Screenshots
 
-<img src="" width="288"/>
+<img src="https://os.alipayobjects.com/rmsportal/gqhazYYGIaUmunx.png" width="288"/>
 
 
 ## Development

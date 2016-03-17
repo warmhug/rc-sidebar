@@ -63,4 +63,9 @@ const App = React.createClass({
   },
 });
 
-ReactDOM.render(<App />, document.getElementById('__react-content'));
+ReactDOM.render(<div>
+  <p>Github：
+  <a href="https://github.com/warmhug/rc-sidebar">https://github.com/warmhug/rc-sidebar</a>
+  </p>
+  <App />
+</div>, document.getElementById('__react-content'));
