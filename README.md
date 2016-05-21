@@ -1,6 +1,8 @@
 # rci-sidebar
 ---
 
+### Note: this repository is no longer maintained. Use [react-component/drawer](https://github.com/react-component/drawer) instead.
+
 React RcSidebar Component
 
 
